@@ -126,3 +126,42 @@ export const writeMetrics = async (metrics: Metric[]) => {
   const data = await response.json();
   return data;
 };
+
+type Span = {
+  traceId: string;
+  spanId: string;
+  parentSpanId?: string;
+  displayName: string;
+  startTime: Date;
+  endTime: Date;
+};
+
+export const writeSpans = async (spans: Span[]) => {
+  const accessToken = await getAccessToken();
+
+  const response = await fetch(
+    `https://cloudtrace.googleapis.com/v2/projects/${serviceAccount.projectId}/traces:batchWrite`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        spans: spans.map((span) => ({
+          name: `projects/${serviceAccount.projectId}/traces/${span.traceId}/spans/${span.spanId}`,
+          spanId: span.spanId,
+          parentSpanId: span.parentSpanId,
+          displayName: {
+            value: span.displayName,
+            truncatedByteCount: 0,
+          },
+          startTime: span.startTime.toISOString(),
+          endTime: span.endTime.toISOString(),
+        })),
+      }),
+    }
+  );
+  const data = await response.json();
+  return data;
+};
