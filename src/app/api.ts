@@ -29,7 +29,7 @@ export const writeLogs = async (logs: Log[]) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        logName: `projects/${serviceAccount.projectId}/logs/frontend-o11y-with-gcloud`,
+        logName: `projects/${serviceAccount.projectId}/logs/frontend-o11y-on-gcloud`,
         resource: {
           type: "global",
           labels: {

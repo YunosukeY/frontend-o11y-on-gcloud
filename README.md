@@ -1,4 +1,4 @@
-# frontend-o11y-with-gcloud
+# frontend-o11y-on-gcloud
 
 ## 準備
 
