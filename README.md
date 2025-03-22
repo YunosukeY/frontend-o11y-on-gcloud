@@ -1,5 +1,7 @@
 # frontend-o11y-on-gcloud
 
+本リポジトリは『[フロントエンドオブザーバビリティ on Google Cloud - Speaker Deck](https://speakerdeck.com/yunosukey/hurontoendoobuzababiritei-on-google-cloud)』のサンプルコードです。
+
 ## 準備
 
 ### Google Cloud
